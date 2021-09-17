@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Setting user to ${USER}"
+
 cat >> classified.service << EOF
 [Unit]
 Description=Gunicorn instance to serve ClassifiedsApp
