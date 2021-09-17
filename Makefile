@@ -17,4 +17,5 @@ run:
 	gunicorn --bind 0.0.0.0:5000 wsgi:app
 
 test:
+	rm -rfv db/
 	python3 main.py

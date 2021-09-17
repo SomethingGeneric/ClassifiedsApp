@@ -6,13 +6,14 @@ class user:
             with open("db/users/" + username) as f:
                 data = f.read().split("\n")
             self.username = username
-            self._password = data[0]
-            self.type = data[1]
+            self.display_name = data[0]
+            self._password = data[1]
+            self.type = data[2]
         else:
             print("No user: " + username)
             sys.exit(1)
     def __repr__(self):
-        return "Username: " + self.username + "\nType: " + self.type 
+        return "Username: " + self.username + "\nReal Name: " + self.display_name + "\nType: " + self.type 
     def validate(self, attempt):
         test = hashlib.sha1(attempt.encode()).hexdigest()
         if test == self._password:
@@ -34,7 +35,7 @@ class userdb:
             print(str(user)+"\n"+"-"*10)
     def retrieve(self,username):
         for user in self.users:
-            if user.name == username:
+            if user.username == username:
                 return user
         return None
     def check(self,username,password):
@@ -49,11 +50,11 @@ class userdb:
             return user.type
         else:
             return "E"
-    def register(self,username,password,type):
+    def register(self,username,displayname,password,type):
         if self.retrieve(username) == None:
             safe_pw = hashlib.sha1(password.encode()).hexdigest()
             with open("db/users/" + username, "w") as f:
-                f.write(safe_pw + "\n" + type)
+                f.write(displayname + "\n" + safe_pw + "\n" + type)
             self.populate_users()
             return True
         else:
