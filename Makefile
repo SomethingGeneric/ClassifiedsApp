@@ -8,10 +8,10 @@ apt:
 
 deploy: apt
 	bash deployment/username.sh
-	sudo cp deployment/classified.service /etc/systemd/system/.
+	sudo cp deployment/classified.service.new /etc/systemd/system/classified.service
 	sudo systemctl daemon-reload
 	sudo systemctl enable --now classified
-	sudo cp deployment/nginx.site /etc/nginx/sites-enabled/classified.site
+	sudo cp deployment/nginx.site.new /etc/nginx/sites-enabled/classified.site
 	sudo systemctl restart nginx
 
 undeploy:

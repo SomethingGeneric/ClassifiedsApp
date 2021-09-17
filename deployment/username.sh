@@ -1,6 +1,8 @@
 #!/bin/bash
 
 pushd deployment
-sed -i "s/apps/${USER}/g" classified.service
-sed -i "s/apps/${USER}/g" nginx.site
+cp classified.service classified.service.new
+sed -i "s/apps/${USER}/g" classified.service.new
+cp nginx.site nginx.site.new
+sed -i "s/apps/${USER}/g" nginx.site.new
 popd
