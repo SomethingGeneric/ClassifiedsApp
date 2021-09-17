@@ -14,6 +14,13 @@ deploy: apt
 	sudo cp deployment/nginx.site /etc/nginx/sites-enabled/classified.site
 	sudo systemctl restart nginx
 
+undeploy:
+	sudo systemctl stop classified
+	sudo systemctl disable classified
+	sudo rm /etc/systemd/system/classified.service
+	sudo rm /etc/nginx/sites-enabled/classified.site
+	sudo systemctl daemon-reload
+	
 run:
 	gunicorn --bind 0.0.0.0:5000 wsgi:app
 
