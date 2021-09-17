@@ -6,7 +6,8 @@ apt:
 	sudo apt install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools nginx
 	make python
 
-services: apt
+deploy: apt
+	bash deployment/username.sh
 	sudo cp deployment/classified.service /etc/systemd/system/.
 	sudo systemctl daemon-reload
 	sudo systemctl enable --now classified
