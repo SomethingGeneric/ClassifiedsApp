@@ -15,3 +15,6 @@ services: apt
 
 run:
 	gunicorn --bind 0.0.0.0:5000 wsgi:app
+
+test:
+	python3 main.py
